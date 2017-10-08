@@ -1,0 +1,278 @@
+<html><head><title>JSlider Multiple Slider Example</title>
+
+  <script language="JavaScript" src="jslider_ieo.js"></script>
+  <script language="JavaScript" src="jslider_drag.js"></script>
+
+
+<script language="JavaScript1.2">
+<!--
+
+var sliderPanel1 = new JSlider('sliderPanel1');
+var sliderPanel2 = new JSlider('sliderPanel2');
+var sliderPanel3 = new JSlider('sliderPanel3');
+
+sliderPanel1.vertical = 1;
+sliderPanel1.trackWidth = 3;
+sliderPanel1.trackColor = '#000000';
+sliderPanel1.pathWidth = 3;
+sliderPanel1.pathStyle = 'solid';
+sliderPanel1.pathColor = '#CDCDCD';
+sliderPanel1.trackMinValue = 0;
+sliderPanel1.trackMaxValue = 1;
+sliderPanel1.unitIncrements = 'hundredths';
+sliderPanel1.unitIncrementsValue = .01;
+sliderPanel1.knobWidth = 30;
+sliderPanel1.knobHeight = 20;
+sliderPanel1.valueReport('sliderPanel1Value','value','decimal 2;padding 2');
+
+sliderPanel2.vertical = 1;
+sliderPanel2.trackWidth = 3;
+sliderPanel2.trackColor = '#000000';
+sliderPanel2.pathWidth = 3;
+sliderPanel2.pathStyle = 'solid';
+sliderPanel2.pathColor = '#CDCDCD';
+sliderPanel2.trackMinValue = 0;
+sliderPanel2.trackMaxValue = 1;
+sliderPanel2.pixelsPerUnit = 6;
+sliderPanel2.unitIncrements = 'hundredths';
+sliderPanel2.unitIncrementsValue = .02;
+sliderPanel2.knobWidth = 30;
+sliderPanel2.knobHeight = 20;
+sliderPanel2.valueReport('sliderPanel2Value','value','decimal 2;padding 2');
+
+sliderPanel3.vertical = 1;
+sliderPanel3.trackWidth = 3;
+sliderPanel3.trackColor = '#000000';
+sliderPanel3.pathWidth = 3;
+sliderPanel3.pathStyle = 'solid';
+sliderPanel3.pathColor = '#CDCDCD';
+sliderPanel3.trackMinValue = 0;
+sliderPanel3.trackMaxValue = 5;
+sliderPanel3.unitIncrements = 'hundredths';
+sliderPanel3.unitIncrementsValue = .05;
+sliderPanel3.knobWidth = 30;
+sliderPanel3.knobHeight = 20;
+sliderPanel3.valueReport('sliderPanel3Value','value','decimal 2;padding 2');
+
+
+//===============================================
+
+var sliderPanel4 = new JSlider('sliderPanel4');
+var sliderPanel5 = new JSlider('sliderPanel5');
+var sliderPanel6 = new JSlider('sliderPanel6');
+
+sliderPanel4.horizontal = 1;
+sliderPanel4.trackWidth = 3;
+sliderPanel4.trackColor = '#000000';
+sliderPanel4.pathWidth = 3;
+sliderPanel4.pathStyle = 'solid';
+sliderPanel4.pathColor = '#CDCDCD';
+sliderPanel4.trackMinValue = 0;
+sliderPanel4.trackMaxValue = 50;
+sliderPanel4.pixelsPerUnit = 6;
+sliderPanel4.unitIncrements = 'integer';
+sliderPanel4.unitIncrementsValue = 1;
+sliderPanel4.knobWidth = 30;
+sliderPanel4.knobHeight = 20;
+sliderPanel4.valueReport('sliderPanel4Value','value','decimal 2;padding 2');
+
+sliderPanel5.horizontal = 1;
+sliderPanel5.trackWidth = 3;
+sliderPanel5.trackColor = '#000000';
+sliderPanel5.pathWidth = 3;
+sliderPanel5.pathStyle = 'solid';
+sliderPanel5.pathColor = '#CDCDCD';
+sliderPanel5.trackMinValue = 0;
+sliderPanel5.trackMaxValue = 25;
+sliderPanel5.pixelsPerUnit = 12;
+sliderPanel5.unitIncrements = 'integer';
+sliderPanel5.unitIncrementsValue = 1;
+sliderPanel5.knobWidth = 30;
+sliderPanel5.knobHeight = 20;
+sliderPanel5.valueReport('sliderPanel5Value','value','decimal 2;padding 2');
+
+sliderPanel6.horizontal = 1;
+sliderPanel6.trackWidth = 3;
+sliderPanel6.trackColor = '#000000';
+sliderPanel6.pathWidth = 3;
+sliderPanel6.pathStyle = 'solid';
+sliderPanel6.pathColor = '#CDCDCD';
+sliderPanel6.trackMinValue = 0;
+sliderPanel6.trackMaxValue = 50;
+sliderPanel6.unitIncrements = 'tenths';
+sliderPanel6.unitIncrementsValue = .5;
+sliderPanel6.knobWidth = 30;
+sliderPanel6.knobHeight = 20;
+sliderPanel6.valueReport('sliderPanel6Value','value','decimal 2;padding 2');
+
+//===============================================
+
+var sliderPanel7 = new JSlider('sliderPanel7');
+var sliderPanel8 = new JSlider('sliderPanel8');
+var sliderPanel9 = new JSlider('sliderPanel9');
+
+sliderPanel7.horizontal = 1;
+sliderPanel7.trackWidth = 3;
+sliderPanel7.trackColor = '#000000';
+sliderPanel7.pathWidth = 3;
+sliderPanel7.pathStyle = 'solid';
+sliderPanel7.pathColor = '#CDCDCD';
+sliderPanel7.trackMinValue = 0;
+sliderPanel7.trackMaxValue = 50;
+sliderPanel7.pixelsPerUnit = 6;
+sliderPanel7.unitIncrements = 'integer';
+sliderPanel7.unitIncrementsValue = 1;
+sliderPanel7.knobWidth = 30;
+sliderPanel7.knobHeight = 20;
+sliderPanel7.valueReport('sliderPanel7Value','value','decimal 2;padding 2');
+
+sliderPanel8.horizontal = 1;
+sliderPanel8.trackLength = 300;
+sliderPanel8.trackWidth = 3;
+sliderPanel8.trackColor = '#000000';
+sliderPanel8.pathWidth = 3;
+sliderPanel8.pathStyle = 'solid';
+sliderPanel8.pathColor = '#CDCDCD';
+sliderPanel8.trackMinValue = 0;
+sliderPanel8.trackMaxValue = 50;
+sliderPanel8.pixelsPerUnit = 6;
+sliderPanel8.unitIncrements = 'integer';
+sliderPanel8.unitIncrementsValue = 1;
+sliderPanel8.knobWidth = 30;
+sliderPanel8.knobHeight = 20;
+sliderPanel8.valueReport('sliderPanel8Value','value','decimal 2;padding 2');
+
+sliderPanel9.horizontal = 1;
+sliderPanel9.trackLength = 300;
+sliderPanel9.trackWidth = 3;
+sliderPanel9.trackColor = '#000000';
+sliderPanel9.pathWidth = 3;
+sliderPanel9.pathStyle = 'solid';
+sliderPanel9.pathColor = '#CDCDCD';
+sliderPanel9.trackMinValue = 0;
+sliderPanel9.trackMaxValue = 50;
+sliderPanel9.pixelsPerUnit = 6;
+sliderPanel9.unitIncrements = 'integer';
+sliderPanel9.unitIncrementsValue = 1;
+sliderPanel9.knobWidth = 30;
+sliderPanel9.knobHeight = 20;
+sliderPanel9.valueReport('sliderPanel9Value','value','decimal 2;padding 2');
+
+
+
+//-->
+</script>
+
+</head>
+<body bgcolor="#FFFFFF" onload="window.focus()">
+<br><br>
+<form name="sample1">
+<div id="panelBG" style="position:absolute;top:50px;left:100px;width:180px;height: 395px;background-color:#000000;border:ridge 3px #FF0000;">
+  <input type="text" name="sliderPanel1Value" id="sliderPanel1Value" size="3" value="" style="position:absolute;left:10px;top:350px;background-color:#F5F5F5;">
+  <input type="text" name="sliderPanel2Value" id="sliderPanel2Value" size="3" value="" style="position:absolute;left:60px;top:350px;background-color:#F5F5F5;">
+  <input type="text" name="sliderPanel3Value" id="sliderPanel3Value" size="3" value="" style="position:absolute;left:110px;top:350px;background-color:#F5F5F5;">
+  <div id="holder" style="position:absolute;top:10px;left:15px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel1.slider();
+  sliderPanel1.valueSet(.2);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder" style="position:absolute;top:10px;left:65px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel2.slider();
+  sliderPanel2.valueSet(.4);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder" style="position:absolute;top:10px;left:115px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel3.slider();
+  sliderPanel3.valueSet(.6);
+  //-->
+  </script>
+  </div>
+</div>
+</form>
+
+<form name="sample2">
+<div id="panelBG2" style="position:absolute;top:50px;left:300px;width:420px;height:170px;background-color:#000000;border:ridge 3px #FF0000;">
+  <input type="text" name="sliderPanel4Value" id="sliderPanel4Value" size="3" value="" style="position:absolute;left:360px;top:15px;background-color:#F5F5F5;">
+  <input type="text" name="sliderPanel5Value" id="sliderPanel5Value" size="3" value="" style="position:absolute;left:360px;top:65px;background-color:#F5F5F5;">
+  <input type="text" name="sliderPanel6Value" id="sliderPanel6Value" size="3" value="" style="position:absolute;left:360px;top:115px;background-color:#F5F5F5;">
+  <div id="holder2" style="position:absolute;top:15px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel4.slider();
+  sliderPanel4.valueSet(.2);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder" style="position:absolute;top:65px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel5.slider();
+  sliderPanel5.valueSet(.4);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder" style="position:absolute;top:115px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel6.slider();
+  sliderPanel6.valueSet(.6);
+  //-->
+  </script>
+  </div>
+</div>
+</form>
+
+<form name="sample3">
+<div id="panelBG3" style="position:absolute;top:250px;left:300px;width:400px;height:170px;background: transparent;border:none;">
+  <input type="text" name="sliderPanel7Value" id="sliderPanel7Value" size="3" value="" style="position:absolute;left:360px;top:15px;background-color:#FFFFFF;border:none 0px #FFFFFF;">
+  <input type="text" name="sliderPanel8Value" id="sliderPanel8Value" size="3" value="" style="position:absolute;left:360px;top:65px;background-color:#FFFFFF;border:none 0px #FFFFFF;">
+  <input type="text" name="sliderPanel9Value" id="sliderPanel9Value" size="3" value="" style="position:absolute;left:360px;top:115px;background-color:#FFFFFF;border:none 0px #FFFFFF;">
+  <div id="holder3" style="position:absolute;top:15px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel7.slider();
+  sliderPanel7.valueSet(.2);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder" style="position:absolute;top:65px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel8.slider();
+  sliderPanel8.valueSet(.4);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder" style="position:absolute;top:115px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel9.slider();
+  sliderPanel9.valueSet(.6);
+  //-->
+  </script>
+  </div>
+</div>
+</form>
+
+
+
+
+
+
+
+</body>
+</html>

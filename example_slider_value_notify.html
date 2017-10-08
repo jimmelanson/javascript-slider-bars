@@ -1,0 +1,277 @@
+<html><head><title>JSlider Multiple Slider Example</title>
+
+  <script language="JavaScript" src="jslider_ieo.js"></script>
+  <script language="JavaScript" src="jslider_drag.js"></script>
+
+
+<script language="JavaScript">
+<!--
+
+var oncePerPass = 0;
+function panelLight(sValue,sName) {
+  var lightName = sName+'Light';
+
+  if(sName == 'sliderPanel1') {
+    if( (sValue > 85) || (sValue < 20) ) {
+      document.getElementById(lightName).style.backgroundColor = '#FF0000';
+    } else {
+      document.getElementById(lightName).style.backgroundColor = '#FFFF00';
+    }
+  }
+  else if(sName == 'sliderPanel2') {
+    if( (sValue > 550) || (sValue < 30) ) {
+      document.getElementById(lightName).style.backgroundColor = '#FF0000';
+    } else {
+      document.getElementById(lightName).style.backgroundColor = '#FFFF00';
+    }
+  } else {
+    if( (sValue > 85) || (sValue < 65) ) {
+      document.getElementById(lightName).style.backgroundColor = '#FF0000';
+    } else {
+      document.getElementById(lightName).style.backgroundColor = '#FFFF00';
+    }
+  }
+
+  if(document.getElementById('tol').value) {
+    if( sValue == document.getElementById('tol').value ) {
+      if(!oncePerPass) {
+        window.alert('You have matched the tolerance on '+sName);
+        oncePerPass = 1;
+      }
+    } else {
+      oncePerPass = 0;
+    }
+  }
+}
+
+
+var JSlider_CaptureChange = new Object();
+JSlider_CaptureChange.notify = function() { 
+  panelLight(arguments[0],arguments[1]);
+};
+
+
+
+
+var sliderPanel1 = new JSlider('sliderPanel1');
+var sliderPanel2 = new JSlider('sliderPanel2');
+var sliderPanel3 = new JSlider('sliderPanel3');
+
+sliderPanel1.vertical = 1;
+sliderPanel1.trackWidth = 3;
+sliderPanel1.trackColor = '#000000';
+sliderPanel1.pathWidth = 3;
+sliderPanel1.pathStyle = 'solid';
+sliderPanel1.pathColor = '#CDCDCD';
+sliderPanel1.pixelsPerUnit = 3;
+sliderPanel1.unitIncrements = 'integer';
+sliderPanel1.unitIncrementsValue = 1;
+sliderPanel1.knobWidth = 30;
+sliderPanel1.knobHeight = 20;
+sliderPanel1.valueReport('sliderPanel1Value','value','decimal 2;padding 2');
+sliderPanel1.valueNotify();
+
+sliderPanel2.vertical = 1;
+sliderPanel2.trackLength = 300;
+sliderPanel2.trackWidth = 3;
+sliderPanel2.trackColor = '#000000';
+sliderPanel2.pathWidth = 3;
+sliderPanel2.pathStyle = 'solid';
+sliderPanel2.pathColor = '#CDCDCD';
+sliderPanel2.trackMinValue = 10;
+sliderPanel2.trackMaxValue = 600;
+sliderPanel2.pixelsPerUnit = 3;
+sliderPanel2.unitIncrements = 'integer';
+sliderPanel2.unitIncrementsValue = 10;
+sliderPanel2.knobWidth = 30;
+sliderPanel2.knobHeight = 20;
+sliderPanel2.valueReport('sliderPanel2Value','value','decimal 2;padding 2');
+//sliderPanel2.valueNotify();
+
+sliderPanel3.vertical = 1;
+sliderPanel3.trackLength = 300;
+sliderPanel3.trackWidth = 3;
+sliderPanel3.trackColor = '#000000';
+sliderPanel3.pathWidth = 3;
+sliderPanel3.pathStyle = 'solid';
+sliderPanel3.pathColor = '#CDCDCD';
+sliderPanel3.trackMinValue = 50;
+sliderPanel3.trackMaxValue = 100;
+sliderPanel3.pixelsPerUnit = 3;
+sliderPanel3.unitIncrements = 'tenths';
+sliderPanel3.unitIncrementsValue = .5;
+sliderPanel3.knobWidth = 30;
+sliderPanel3.knobHeight = 20;
+sliderPanel3.valueReport('sliderPanel3Value','value','decimal 2;padding 2');
+sliderPanel3.valueNotify();
+
+
+
+var workingSlider = 0;
+function changeSlider(sNum) {
+  if(sNum == 1) {
+    document.getElementById('vns').value = sliderPanel1.valueNotifyState();
+    workingSlider = 1;
+  }
+  if(sNum == 2) {
+    document.getElementById('vns').value = sliderPanel2.valueNotifyState();
+    workingSlider = 2;
+  }
+  if(sNum == 3) {
+    document.getElementById('vns').value = sliderPanel3.valueNotifyState();
+    workingSlider = 3;
+  }
+}
+
+//-->
+</script>
+
+</head>
+<body onload="window.focus()">
+<br><br>
+<form name="sample1">
+<div id="panelBG" style="position:absolute;top:50px;left:100px;width:180px;height: 380px;background-color:#000000;border:ridge 3px #FF0000;">
+  <input type="text" name="sliderPanel1Light" id="sliderPanel1Light" size="3" value="" style="position:absolute;left:14px;top:8px;height:5px;background-color:#000000;border:none;">
+  <input type="text" name="sliderPanel2Light" id="sliderPanel2Light" size="3" value="" style="position:absolute;left:64px;top:8px;height:5px;background-color:#000000;border:none;">
+  <input type="text" name="sliderPanel3Light" id="sliderPanel3Light" size="3" value="" style="position:absolute;left:114px;top:8px;height:5px;background-color:#000000;border:none;">
+  <input type="text" name="sliderPanel1Value" id="sliderPanel1Value" size="4" value="" style="position:absolute;left:9px;top:345px;background-color:#F5F5F5;text-align:center;">
+  <input type="text" name="sliderPanel2Value" id="sliderPanel2Value" size="4" value="" style="position:absolute;left:60px;top:345px;background-color:#F5F5F5;text-align:center;">
+  <input type="text" name="sliderPanel3Value" id="sliderPanel3Value" size="4" value="" style="position:absolute;left:110px;top:345px;background-color:#F5F5F5;text-align:center;">
+
+  <div id="holder1" style="position:absolute;top:15px;left:15px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;" onmouseout="document.getElementById('sliderPanel1Light').style.backgroundColor = '#000000';" onmouseover="document.getElementById('sliderPanel1Light').style.backgroundColor = '#FFFF00';">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel1.slider();
+  sliderPanel1.valueSet(.2);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder2" style="position:absolute;top:15px;left:65px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;" onmouseout="document.getElementById('sliderPanel2Light').style.backgroundColor = '#000000';" onmouseover="document.getElementById('sliderPanel2Light').style.backgroundColor = '#FFFF00';">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel2.slider();
+  sliderPanel2.valueSet(.4);
+  //-->
+  </script>
+  </div>
+
+  <div id="holder3" style="position:absolute;top:15px;left:115px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;" onmouseout="document.getElementById('sliderPanel3Light').style.backgroundColor = '#000000';" onmouseover="document.getElementById('sliderPanel3Light').style.backgroundColor = '#FFFF00';">
+  <script language="JavaScript1.2">
+  <!--
+  sliderPanel3.slider();
+  sliderPanel3.valueSet(.6);
+  //-->
+  </script>
+  </div>
+</div>
+</form>
+
+<div id="controls" style="position:absolute;left:300px;top:50px;height:380px;width:300px;background-color:#F5F5F5;border:outset 3px #A9A9A9;">
+<form name="ctrlForm">
+<br>
+<center>
+<b>
+<input type="radio" name="sliderNumber" value="1" onClick="changeSlider(1)">Slider 1&nbsp;&nbsp;&nbsp;
+<input type="radio" name="sliderNumber" value="2" onClick="changeSlider(2)">Slider 2&nbsp;&nbsp;&nbsp;
+<input type="radio" name="sliderNumber" value="3" onClick="changeSlider(3)">Slider 3
+</b>
+</center>
+<br>
+<center>
+<table border="0" cellspacing="0" cellpadding="3" style="width:250px;">
+  <tr>
+    <td><b>Value Notify State:</b></td>
+    <td><input type="text" name="vns" id="vns" value="" size="6" style="background-color:#F5F5F5;border:0px none #F5F5F5;"></td>
+  </tr>
+  <tr>
+    <td><b>Enter Tolerance:</b><br><i>From 1 to 99</i></td>
+    <td valign="top"><input type="text" name="tol" id="tol" value="75" size="6" style="text-align:center;"></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="font-size:9pt;font-family:verdana,helvetica,sans-serif;">
+    Enter a value above, the sliders automated valueNotify() method will alert
+    you when you pass over that value IF their state is "true".
+    </td>
+  </tr>
+</table>
+</center>
+<br>
+
+<script language="JavaScript1.2">
+<!--
+function setSliderValue(setVal) {
+  if(workingSlider > 0) {
+    if( (setVal == 'max') || (setVal == 'min') ) {
+      if(workingSlider == 1) {
+        sliderPanel1.valueSet(setVal);
+        document.getElementById('sliderPanel1Light').style.backgroundColor = '#000000';
+      }
+      else if(workingSlider == 2) {
+        sliderPanel2.valueSet(setVal);
+        document.getElementById('sliderPanel2Light').style.backgroundColor = '#000000';
+      }
+      else if(workingSlider == 3) {
+        sliderPanel3.valueSet(setVal);
+        document.getElementById('sliderPanel3Light').style.backgroundColor = '#000000';
+      }
+    } else {
+      if(workingSlider == 1) {
+        sliderPanel1.valueSet( parseFloat(setVal / 100) );
+        document.getElementById('sliderPanel1Light').style.backgroundColor = '#000000';
+      }
+      else if(workingSlider == 2) {
+        sliderPanel2.valueSet( parseFloat(setVal / 100) );
+        document.getElementById('sliderPanel2Light').style.backgroundColor = '#000000';
+      }
+      else if(workingSlider == 3) {
+        sliderPanel3.valueSet( parseFloat(setVal / 100) );
+        document.getElementById('sliderPanel3Light').style.backgroundColor = '#000000';
+      }
+    }
+  } else {
+    window.alert('You have not selected a slider. Use the radio buttons on the control panel.');
+  }
+}
+
+//-->
+</script>
+
+<center>
+
+<input type="button" name="btn1" value="Set Max" style="width:100px;" onClick="setSliderValue('max')">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="btn1" value="Set Min" style="width:100px;" onClick="setSliderValue('min')">
+<br><br>
+<input type="button" name="btn1" value="15%" style="width:100px;" onClick="setSliderValue(15)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="btn1" value="50%" style="width:100px;" onClick="setSliderValue(50)">
+<br><br>
+<input type="button" name="btn1" value="75%" style="width:100px;" onClick="setSliderValue(75)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="btn1" value="90%" style="width:100px;" onClick="setSliderValue(90)">
+</center>
+</form>
+</div>
+
+<div id="controls" style="position:absolute;left:610px;top:50px;height:380px;width:300px;background-color:#F5F5F5;border:outset 3px #A9A9A9;padding:10px 10px 10px 10px;">
+<center><b>Slider valueNotify() Demonstration.</b></center>
+<br>
+<ol>
+<li>Select a slider from the radio buttons at the top of the screen.
+<li>You will see which sliders have the valueNotify() turned on.
+<li>Sliders with the valueNotify() turned on will react when they move past the tolerance value.
+<li>The ranges in use are: #1 ( 0 to 100), #2 (10 to 600), #3 (0 to 100)
+<li>Click any of the buttons to see the selected slider moved to that position.
+</ol>
+<center><b>Slider Settings:</b></center>
+<br>
+<b>Slider 1:</b>0 to 100, 3px/Unit,Integer,1
+<br>
+<b>Slider 2:</b>10 to 600,3px/Unit,Integer,10
+<br>
+<b>Slider 3:</b>50 to 100,3px/Unit,Tenths,.5
+</div>
+
+</body>
+</html>

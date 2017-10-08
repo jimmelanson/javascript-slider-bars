@@ -1,0 +1,346 @@
+<html><head><title>Test Slider Object</title>
+
+  <script language="JavaScript" src="jslider_ieo.js"></script>
+  <script language="JavaScript" src="jslider_drag.js"></script>
+
+
+<script language="JavaScript1.2">
+<!--
+
+var onlyOnce = 0;
+function myNiftyFunction(sValue,sName,sHandle) {
+  if(sValue > 174) {
+    window.alert('Slider '+sName+' has passed the threshold value. Resetting slider');
+    sHandle.valueSet(0);
+    onlyOnce = 1;
+  }
+}
+
+var JSlider_CaptureChange = new Object();
+JSlider_CaptureChange.notify = function() { 
+  if(!onlyOnce) {
+    myNiftyFunction(arguments[0],arguments[1],arguments[2]);
+  }
+};
+
+var slider = new JSlider('slider');
+slider.vertical = 1;
+slider.trackLength = 500;
+slider.trackWidth = 3;
+slider.trackColor = '#FF0000';
+slider.pathWidth = 3;
+slider.pathStyle = 'solid';
+slider.pathColor = '#00FF00';
+slider.valueNotify();
+
+slider.pathStyleRollover = '';
+slider.pathColorRollover = '';
+
+
+slider.trackMinValue = 50;
+slider.trackMaxValue = 200;
+slider.knobWidth = 40;
+slider.knobHeight = 40;
+slider.valueReport('rValue','value','decimal 4;padding 4');
+//slider.valueReport('rInnerHTML','innerHTML','');
+
+function getCurrentValue() {
+  document.getElementById('rCurrent').value = slider.value();
+  copyToPercentage(document.getElementById('rCurrent').value,slider.trackMaxValue,slider.trackMinValue);
+  return true;
+}
+
+var cn = new jsnumbers;
+function copyToPercentage(iVal,tmaxVal,tminVal) {
+  if((iVal - tminVal) <= 0) {
+    document.getElementById('pValue').value = '0';
+  }
+  else if(iVal == tmaxVal) {
+    document.getElementById('pValue').value = '100';
+  } else {
+    var pVal = parseFloat(parseFloat(iVal - tminVal) / parseFloat(tmaxVal - tminVal)) * 100;
+    cn.value(pVal);
+    document.getElementById('pValue').value = cn.decimal(2);
+  }
+}
+
+var isHidden = 0;
+function hideIt() {
+  if(isHidden) {
+    slider.sliderUnhide();
+    document.getElementById('hidebtn').value='Hide';
+    isHidden = 0;
+  } else {
+    slider.sliderHide();
+    document.getElementById('hidebtn').value='Show';
+    isHidden = 1;
+  }
+}
+
+
+//======================
+
+var sliderH = new JSlider('sliderH');
+sliderH.horizontal = 1;
+sliderH.trackLength = 500;
+sliderH.trackWidth = 3;
+sliderH.trackColor = '#FF0000';
+sliderH.pathWidth = 3;
+sliderH.pathStyle = 'solid';
+sliderH.pathColor = '#00FF00';
+sliderH.trackMinValue = 0;
+sliderH.trackMaxValue = 200;
+sliderH.knobWidth = 40;
+sliderH.knobHeight = 40;
+sliderH.valueReport('rValueH','value','decimal 4;padding 4');
+sliderH.valueNotify();
+
+function getCurrentValueH() {
+  document.getElementById('rCurrentH').value = sliderH.value();
+  copyToPercentageH(document.getElementById('rCurrentH').value,sliderH.trackMaxValue,sliderH.trackMinValue);
+  return true;
+}
+
+var cnH = new jsnumbers;
+function copyToPercentageH(iVal,tmaxVal,tminVal) {
+  if((iVal - tminVal) <= 0) {
+    document.getElementById('pValueH').value = '0';
+  }
+  else if(iVal == tmaxVal) {
+    document.getElementById('pValueH').value = '100';
+  } else {
+    var pVal = parseFloat(parseFloat(iVal - tminVal) / parseFloat(tmaxVal - tminVal)) * 100;
+    cnH.value(pVal);
+    document.getElementById('pValueH').value = cnH.decimal(2);
+  }
+}
+
+var isHiddenH = 0;
+function hideItH() {
+  if(isHiddenH) {
+    sliderH.sliderUnhide();
+    document.getElementById('hidebtnH').value='Hide';
+    isHiddenH = 0;
+  } else {
+    sliderH.sliderHide();
+    document.getElementById('hidebtnH').value='Show';
+    isHiddenH = 1;
+  }
+}
+
+//-->
+</script>
+
+</head>
+<body>
+
+
+<br>
+<h2>JavaScript Slider Library Demonstration (Vertical)</h2>
+
+<table border=2 cellspacing=2 cellpadding=5>
+  <form name="ValuesForm">
+  <tr bgcolor="#CDCDCD">
+   <td><b>Get Current Value:</b></td><td><input type="text" id="rCurrent" name="rCurrent" value="" size="25" style="background-color:#F5F5F5;"></td><td><input type="button" name="gcvbtn" value="Current Value" onClick="getCurrentValue()" style="width:150px;"></td>
+  </tr>
+  <tr bgcolor="#CDCDCD">
+   <td><b>Current Percentage:</b></td><td><input type="text" id="pValue" name="pValue" value="" size="25" style="background-color:#F5F5F5;"></td><td><input type="button" name="hidebtn" id="hidebtn" value="Hide" onClick="hideIt();" style="width:150px;"></td>
+  </tr>
+  <tr>
+   <td><b>Auto Current Value:</b></td><td><input type="text" id="rValue" name="rValue" value="" size="25"></td><td><input type="radio" id="showR" name="showR" value="1" onClick="document.getElementById('rValue').value=document.getElementById('rInnerHTML').innerHTML;document.getElementById('rInnerHTML').innerHTML='';slider.valueReport('rValue','value','decimal 4;padding 4');return true;" checked></td>
+  </tr>
+  <tr>
+   <td><b>Auto Current Value:</b></td><td><font id="rInnerHTML" style="font-family:verdana,helvetica,sans-serif;font-size:10pt;">&nbsp;</font></td><td><input type="radio" id="showR" name="showR" value="2" onClick="document.getElementById('rInnerHTML').innerHTML=document.getElementById('rValue').value;document.getElementById('rValue').value='';slider.valueReport('rInnerHTML','innerHTML','decimal 4;padding 4');return true;"></td>
+  </tr>
+  <tr>
+   <td><b>Set Value:</b></td><td><input type="text" id="gval" name="gval" value="" size="25"></td><td><input type="button" name="gtvbtn" value="SetSlider" onClick="slider.valueSet(document.getElementById('gval').value);if(!isNaN(document.getElementById('gval').value)) {document.getElementById('gval').value=parseFloat(document.getElementById('gval').value)};" style="width:150px;"></td>
+  </tr>
+  </form>
+</table>
+
+<br><br><br>
+
+<table border="0" cellspacing="0" cellpadding="5" style="position:absolute;left:200px;">
+  <tr>
+    <td><b>trackLength:</b></td><td><input type="text" name="show5" id="show5" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>trackFullWidth:</b></td><td><input type="text" name="show5" id="show5a" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>trackFullHeight:</b></td><td><input type="text" name="show5" id="show5b" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>pathWidth:</b></td><td><input type="text" name="show6" id="show6" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobWidth:</b></td><td><input type="text" name="show7" id="show7" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobHeight:</b></td><td><input type="text" name="show8" id="show8" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobFullWidth:</b></td><td><input type="text" name="show9" id="show9" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobFullHeight:</b></td><td><input type="text" name="show10" id="show10" size="15"></td>
+  </tr>
+  <tr><td><b>Settings</b></td><td><textarea name="show11" id="show11" cols="50" rows="8"></textarea></td></tr>
+
+</table>
+
+<br><br><br>
+
+<div id="holder" style="position:absolute;top:300px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+<script language="JavaScript1.2">
+<!--
+slider.slider();
+slider.valueSet(.4);
+
+document.getElementById('show5').value = slider.trackLength;
+document.getElementById('show6').value = slider.pathWidth;
+document.getElementById('show7').value = slider.knobWidth;
+document.getElementById('show8').value = slider.knobHeight;
+document.getElementById('show9').value = slider.knobFullWidth;
+document.getElementById('show10').value = slider.knobFullHeight;
+document.getElementById('show5a').value = slider.trackFullWidth;
+document.getElementById('show5b').value = slider.trackFullHeight;
+
+
+  //this.calculate('knobLeft'); //Min Position
+  //this.calculate('knobTop');   //Vertical Min Position
+  //this.calculate('trackLeft');
+  //this.calculate('trackTop');
+  //this.calculate('knobRight'); // Max position
+  //this.calculate('knobTopVerticalLimit'); //Vertical Max Position
+
+
+var showvals = 'knobLeft = '+slider.calculate('knobLeft')+'\n';
+showvals += 'knobTop = '+slider.calculate('knobTop')+'\n';
+showvals += 'knobRight = '+slider.calculate('knobRight')+'\n';
+showvals += 'knobTopVerticalLimit = '+slider.calculate('knobTopVerticalLimit')+'\n';
+showvals += 'trackLeft = '+slider.calculate('trackLeft')+'\n';
+showvals += 'trackTop = '+slider.calculate('trackTop')+'\n';
+document.getElementById('show11').value = showvals;
+
+
+
+
+
+//-->
+</script>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+
+
+
+<h2>JavaScript Slider Library Demonstration (Horizontal)</h2>
+
+<table border=2 cellspacing=2 cellpadding=5>
+  <form>
+  <tr bgcolor="#CDCDCD">
+   <td><b>Get Current Value:</b></td><td><input type="text" id="rCurrentH" name="rCurrentH" value="" size="25" style="background-color:#F5F5F5;"></td><td><input type="button" name="gcvbtnH" value="Current Value" onClick="getCurrentValueH()" style="width:150px;"></td>
+  </tr>
+  <tr bgcolor="#CDCDCD">
+   <td><b>Current Percentage:</b></td><td><input type="text" id="pValueH" name="pValueH" value="" size="25" style="background-color:#F5F5F5;"></td><td><input type="button" name="hidebtnH" id="hidebtn" value="Hide" onClick="hideItH();" style="width:150px;"></td>
+  </tr>
+  <tr>
+   <td><b>Auto Current Value:</b></td><td><input type="text" id="rValueH" name="rValueH" value="" size="25"></td><td><input type="radio" id="showRH" name="showRH" value="1" onClick="document.getElementById('rValueH').value=document.getElementById('rInnerHTMLH').innerHTML;document.getElementById('rInnerHTMLH').innerHTML='';sliderH.valueReport('rValueH','value','decimal 4;padding 4');return true;" checked></td>
+  </tr>
+  <tr>
+   <td><b>Auto Current Value:</b></td><td><font id="rInnerHTMLH" style="font-family:verdana,helvetica,sans-serif;font-size:10pt;">&nbsp;</font></td><td><input type="radio" id="showRH" name="showRH" value="2" onClick="document.getElementById('rInnerHTMLH').innerHTML=document.getElementById('rValueH').value;document.getElementById('rValueH').value='';sliderH.valueReport('rInnerHTMLH','innerHTML','decimal 4;padding 4');return true;"></td>
+  </tr>
+  <tr>
+   <td><b>Set Value:</b></td><td><input type="text" id="gvalH" name="gvalH" value="" size="25"></td><td><input type="button" name="gtvbtnH" value="SetSlider" onClick="sliderH.valueSet(document.getElementById('gvalH').value);if(!isNaN(document.getElementById('gvalH').value)) {document.getElementById('gvalH').value=parseFloat(document.getElementById('gvalH').value)};" style="width:150px;"></td>
+  </tr>
+  </form>
+</table>
+
+<br><br><br><br><br><br>
+
+<table border="0" cellspacing="0" cellpadding="5" style="position:absolute;left:200px;">
+  <tr>
+    <td><b>trackLength:</b></td><td><input type="text" name="show5H" id="show5H" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>trackFullWidth:</b></td><td><input type="text" name="show5aH" id="show5aH" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>trackFullHeight:</b></td><td><input type="text" name="show5bH" id="show5bH" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>pathWidth:</b></td><td><input type="text" name="show6H" id="show6H" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobWidth:</b></td><td><input type="text" name="show7H" id="show7H" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobHeight:</b></td><td><input type="text" name="show8H" id="show8H" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobFullWidth:</b></td><td><input type="text" name="show9H" id="show9H" size="15"></td>
+  </tr>
+  <tr>
+    <td><b>knobFullHeight:</b></td><td><input type="text" name="show10H" id="show10H" size="15"></td>
+  </tr>
+  <tr><td><b>Settings</b></td><td><textarea name="show11H" id="show11H" cols="50" rows="8"></textarea></td></tr>
+
+</table>
+
+<br><br><br>
+
+<div id="holderH" style="position:absolute;top:1240px;left:10px;padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+<script language="JavaScript1.2">
+<!--
+sliderH.slider();
+//sliderH.valueSet(.4);
+
+
+
+
+document.getElementById('show5H').value = sliderH.trackLength;
+document.getElementById('show6H').value = sliderH.pathWidth;
+document.getElementById('show7H').value = sliderH.knobWidth;
+document.getElementById('show8H').value = sliderH.knobHeight;
+document.getElementById('show9H').value = sliderH.knobFullWidth;
+document.getElementById('show10H').value = sliderH.knobFullHeight;
+document.getElementById('show5aH').value = sliderH.trackFullWidth;
+document.getElementById('show5bH').value = sliderH.trackFullHeight;
+
+
+  //this.calculate('knobLeft'); //Min Position
+  //this.calculate('knobTop');   //Vertical Min Position
+  //this.calculate('trackLeft');
+  //this.calculate('trackTop');
+  //this.calculate('knobRight'); // Max position
+  //this.calculate('knobTopVerticalLimit'); //Vertical Max Position
+
+
+var showvalsH = 'knobLeft = '+sliderH.calculate('knobLeft')+'\n';
+showvalsH += 'knobTop = '+sliderH.calculate('knobTop')+'\n';
+showvalsH += 'knobRight = '+sliderH.calculate('knobRight')+'\n';
+showvalsH += 'knobTopVerticalLimit = '+sliderH.calculate('knobTopVerticalLimit')+'\n';
+showvalsH += 'trackLeft = '+sliderH.calculate('trackLeft')+'\n';
+showvalsH += 'trackTop = '+sliderH.calculate('trackTop')+'\n';
+document.getElementById('show11H').value = showvalsH;
+
+
+
+
+
+//-->
+</script>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+
+
+
+</body>
+</html>
